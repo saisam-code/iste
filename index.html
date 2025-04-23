@@ -3,23 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ISTE Chapter</title>
+  <title>ISTE Chapter - Indian Society for Technical Education</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="https://isteonline.in/wp-content/uploads/2021/01/ISTE-logo.png" type="image/png">
 
   <!-- Google Fonts + FontAwesome -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Slab:wght@300;400;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto+Slab:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <!-- Swiper CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/swiper@9/swiper-bundle.min.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
 
   <style>
     :root {
@@ -29,12 +23,16 @@
       --iste-light: #f8f9fa;
       --iste-accent: #00b4d8;
       --transition: 0.3s ease;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
+    
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+    
     body {
       font-family: 'Montserrat', sans-serif;
       line-height: 1.6;
@@ -42,31 +40,49 @@
       background: var(--iste-light);
       overflow-x: hidden;
     }
+    
     h1, h2, h3, h4 {
       font-family: 'Roboto Slab', serif;
       font-weight: 700;
     }
-    a { text-decoration: none; }
+    
+    .code-font {
+      font-family: 'Share Tech Mono', monospace;
+    }
+    
+    a { 
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* Buttons */
     .btn, .btn-outline {
       display: inline-block;
       border-radius: 50px;
       font-weight: 600;
       transition: var(--transition);
+      cursor: pointer;
     }
+    
     .btn {
       background: var(--iste-orange);
       color: #fff;
       padding: 0.8rem 2rem;
+      box-shadow: var(--shadow);
     }
+    
     .btn:hover {
       background: #e05a2c;
       transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
     }
+    
     .btn-outline {
       border: 2px solid var(--iste-orange);
       color: var(--iste-orange);
       padding: 0.6rem 1.5rem;
     }
+    
     .btn-outline:hover {
       background: var(--iste-orange);
       color: #fff;
@@ -80,97 +96,163 @@
       background: var(--iste-blue);
       padding: 1rem 0;
       z-index: 1000;
-      transition: padding var(--transition), border-bottom var(--transition);
+      transition: all var(--transition);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
+    
     header.shrink {
-      padding: 0.4rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 0;
+      backdrop-filter: blur(5px);
+      background: rgba(0, 59, 111, 0.95);
     }
+    
     .header-container {
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
     }
-    .logo-text { color: #fff; font-size: 1.5rem; }
-    .logo-text span { color: var(--iste-orange); }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .logo-text { 
+      color: #fff; 
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .logo-text span { 
+      color: var(--iste-orange);
+    }
+    
     .logo-img {
       height: 50px;
       transition: height var(--transition);
     }
-    .logo-img.shrink { height: 40px; }
+    
+    .logo-img.shrink { 
+      height: 40px;
+    }
+    
+    /* Navigation */
     nav ul {
       display: flex;
+      list-style: none;
       gap: 2rem;
     }
+    
     nav a {
       color: #fff;
       font-weight: 500;
       position: relative;
+      padding: 0.5rem 0;
     }
+    
     nav a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
+      bottom: 0;
       left: 0;
       height: 3px;
       width: 0;
       background: var(--iste-orange);
       transition: width var(--transition);
     }
+    
     nav a:hover::after {
       width: 100%;
     }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-    main { padding-top: 100px; }
+    main { 
+      padding-top: 80px;
+    }
 
     /* Hero Slider */
     .swiper {
       width: 100%;
       height: 90vh;
+      min-height: 500px;
     }
+    
     .swiper-slide {
       position: relative;
       background-size: cover;
       background-position: center;
     }
+    
     .slide-overlay {
       position: absolute;
       bottom: 20%;
-      left: 5%;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 1.5rem;
+      left: 10%;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
+      box-shadow: var(--shadow-hover);
+      max-width: 500px;
+      animation: fadeInUp 0.8s ease;
+    }
+    
+    .slide-overlay h2 {
+      color: var(--iste-blue);
+      margin-bottom: 1rem;
+      font-size: 2.2rem;
+    }
+    
+    .slide-overlay p {
+      margin-bottom: 1.5rem;
+      color: #555;
     }
 
     /* Sections */
     section {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 4rem 2rem;
+      padding: 5rem 2rem;
     }
+    
     .section-title {
       text-align: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
       position: relative;
     }
+    
     .section-title h2 {
       color: var(--iste-blue);
       display: inline-block;
+      font-size: 2.5rem;
     }
+    
     .section-title h2::after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -15px;
       left: 50%;
       transform: translateX(-50%);
       width: 80px;
       height: 4px;
       background: var(--iste-orange);
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      color: #555;
     }
 
     /* About Tabs */
@@ -179,127 +261,673 @@
       justify-content: center;
       gap: 1rem;
       margin-bottom: 2rem;
+      flex-wrap: wrap;
     }
+    
     .tabs button {
       background: none;
       border: none;
       font-size: 1.1rem;
-      padding: 0.5rem 1rem;
+      padding: 0.8rem 1.5rem;
       position: relative;
       cursor: pointer;
+      font-weight: 600;
+      color: #555;
+      transition: color var(--transition);
     }
+    
+    .tabs button:hover {
+      color: var(--iste-blue);
+    }
+    
+    .tabs button.active {
+      color: var(--iste-blue);
+    }
+    
     .tabs button.active::after {
       content: '';
       position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 100%;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
       height: 3px;
       background: var(--iste-orange);
     }
+    
     .tab-content {
       display: none;
       animation: fadeInUp 0.5s ease forwards;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
     }
+    
     .tab-content.active {
       display: block;
+    }
+    
+    .tab-content p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+    
+    .tab-content ul {
+      margin: 1rem 0 1rem 2rem;
     }
 
     /* Events Flip Cards */
     .events-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
     }
+    
     .event-card {
       perspective: 1000px;
+      height: 350px;
     }
+    
     .event-inner {
       position: relative;
+      width: 100%;
+      height: 100%;
       transition: transform 0.6s;
       transform-style: preserve-3d;
     }
+    
     .event-card:hover .event-inner {
       transform: rotateY(180deg);
     }
+    
     .event-front, .event-back {
-      backface-visibility: hidden;
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
     }
+    
+    .event-front {
+      background: white;
+    }
+    
     .event-front img {
       width: 100%;
       height: 200px;
       object-fit: cover;
     }
+    
     .event-info {
       padding: 1.5rem;
     }
+    
+    .event-date {
+      color: var(--iste-orange);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .event-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--iste-blue);
+    }
+    
+    .event-desc {
+      color: #666;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
     .event-back {
-      transform: rotateY(180deg);
       background: var(--iste-blue);
-      color: #fff;
+      color: white;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .event-back h3 {
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    .event-back p {
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .team-member {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      transition: var(--transition);
+    }
+    
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .member-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 1.5rem;
+      border: 5px solid var(--iste-light);
+      box-shadow: var(--shadow);
+    }
+    
+    .member-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .team-member:hover .member-img img {
+      transform: scale(1.1);
+    }
+    
+    .member-name {
+      font-size: 1.3rem;
+      color: var(--iste-blue);
+      margin-bottom: 0.5rem;
+    }
+    
+    .member-role {
+      color: var(--iste-orange);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .member-desc {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .social-links a {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: var(--iste-light);
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--iste-orange);
+      color: white;
+      transform: translateY(-3px);
     }
 
-    /* Newsletter Footer */
-    .footer-newsletter {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin: 2rem 0;
+    /* Gallery Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
     }
-    .footer-newsletter input {
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 250px;
+      box-shadow: var(--shadow);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 59, 111, 0.8);
+      color: white;
+      padding: 1rem;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    /* Contact Section */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    
+    .contact-info {
+      animation: fadeInLeft 0.8s ease;
+    }
+    
+    .contact-info h3 {
+      color: var(--iste-blue);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+    
+    .contact-details {
+      margin-bottom: 2rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--iste-blue);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+    
+    .contact-text p {
+      color: #555;
+      line-height: 1.6;
+    }
+    
+    .contact-social {
+      margin-top: 2rem;
+    }
+    
+    .contact-social h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .social-links-large {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-links-large a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--iste-blue);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 1.2rem;
+    }
+    
+    .social-links-large a:hover {
+      background: var(--iste-orange);
+      transform: translateY(-3px);
+    }
+    
+    .contact-form {
+      animation: fadeInRight 0.8s ease;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--iste-blue);
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Montserrat', sans-serif;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--iste-blue);
+      box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+      background: var(--iste-blue);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-radius: 10px;
+      margin: 3rem 0;
+    }
+    
+    .newsletter h2 {
+      margin-bottom: 1rem;
+    }
+    
+    .newsletter p {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .newsletter-form input {
       flex: 1;
-      padding: 0.7rem 1rem;
+      padding: 0.8rem 1rem;
       border: none;
       border-radius: 50px 0 0 50px;
+      font-family: 'Montserrat', sans-serif;
     }
-    .footer-newsletter button {
-      padding: 0.7rem 1.5rem;
+    
+    .newsletter-form button {
+      padding: 0 2rem;
       border: none;
       border-radius: 0 50px 50px 0;
       background: var(--iste-orange);
-      color: #fff;
+      color: white;
+      font-weight: 600;
       cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .newsletter-form button:hover {
+      background: #e05a2c;
     }
 
     /* Footer */
     footer {
       background: var(--iste-dark);
-      color: #fff;
-      text-align: center;
-      padding: 3rem 2rem 1rem;
+      color: white;
+      padding: 3rem 0 1rem;
     }
-    footer a { color: #fff; }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-col h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--iste-orange);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--iste-orange);
+      padding-left: 5px;
+    }
+    
+    .footer-links a i {
+      font-size: 0.8rem;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { 
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInLeft {
+      from { 
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from { 
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-img {
+        order: -1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 1.5rem;
+      }
+      
+      nav {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--iste-blue);
+        padding: 1rem;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        transform: translateY(-150%);
+        transition: transform var(--transition);
+        z-index: 999;
+      }
+      
+      nav.active {
+        transform: translateY(0);
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .swiper {
+        height: 70vh;
+      }
+      
+      .slide-overlay {
+        left: 5%;
+        right: 5%;
+        max-width: none;
+      }
+      
+      section {
+        padding: 3rem 1.5rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .newsletter-form {
+        flex-direction: column;
+      }
+      
+      .newsletter-form input {
+        border-radius: 50px;
+        margin-bottom: 1rem;
+      }
+      
+      .newsletter-form button {
+        border-radius: 50px;
+        padding: 0.8rem;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <header>
+  <header id="header">
     <div class="header-container">
       <div class="logo">
-        <img src="https://isteonline.in/wp-content/uploads/2021/01/ISTE-logo.png" alt="" class="logo-img" />
+        <img src="https://isteonline.in/wp-content/uploads/2021/01/ISTE-logo.png" alt="ISTE Logo" class="logo-img" />
         <div class="logo-text">ISTE <span>Chapter</span></div>
       </div>
-      <nav>
+      
+      <nav id="nav">
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#events">Events</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#gallery">Gallery</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      
+      <button class="mobile-menu-btn" id="menuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </header>
 
@@ -308,120 +936,189 @@
     <section id="home">
       <div class="swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1523961131990-5ea7c61b2107')">
+          <!-- Slide 1 -->
+          <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80')">
             <div class="slide-overlay">
-              <h2>Web Dev Workshop</h2>
-              <p>June 15, 2024 — HTML, CSS, JS & React</p>
-              <a href="#events" class="btn-outline">Details</a>
+              <h2>Web Development Workshop</h2>
+              <p>Join our intensive workshop on modern web technologies including HTML5, CSS3, JavaScript and React framework.</p>
+              <a href="#events" class="btn-outline">View Details</a>
             </div>
           </div>
-          <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71')">
+          
+          <!-- Slide 2 -->
+          <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
             <div class="slide-overlay">
-              <h2>24‑Hour Hackathon</h2>
-              <p>July 22‑23, 2024 — Build real‑world solutions</p>
-              <a href="#events" class="btn-outline">Register</a>
+              <h2>24-Hour Hackathon</h2>
+              <p>Compete in our annual hackathon to build innovative solutions for real-world problems. Win exciting prizes!</p>
+              <a href="#events" class="btn-outline">Register Now</a>
             </div>
           </div>
-          <!-- add more slides as needed -->
+          
+          <!-- Slide 3 -->
+          <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+            <div class="slide-overlay">
+              <h2>Industry Expert Series</h2>
+              <p>Learn from leading tech professionals about current industry trends and career opportunities.</p>
+              <a href="#events" class="btn-outline">Learn More</a>
+            </div>
+          </div>
         </div>
-        <!-- pagination/arrows -->
+        
+        <!-- Swiper Controls -->
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </div>
     </section>
 
-    <!-- About with Tabs -->
+    <!-- About Section -->
     <section id="about">
-      <div class="section-title"><h2>About ISTE</h2></div>
+      <div class="section-title">
+        <h2>About ISTE</h2>
+      </div>
+      
+      <div class="section-subtitle">
+        The Indian Society for Technical Education (ISTE) is the leading national professional non-profit making Society for the Technical Education System in our country.
+      </div>
+      
       <div class="tabs">
         <button data-tab="who" class="active">Who We Are</button>
-        <button data-tab="mission">Mission</button>
+        <button data-tab="mission">Our Mission</button>
+        <button data-tab="vision">Our Vision</button>
         <button data-tab="history">History</button>
       </div>
+      
       <div id="who" class="tab-content active">
-        <p>…ISTE is a national professional society registered under the Societies Registration Act of 1860.</p>
+        <p>The Indian Society for Technical Education (ISTE) is a national, professional, non-profit making Society registered under the Societies Registration Act of 1860.</p>
+        <p>ISTE students' chapter at our college aims to provide technical awareness to students and enhance their skills through various workshops, seminars, and competitions. We strive to bridge the gap between academia and industry.</p>
+        <p>ISTE has over 1.5 lakh individual members and more than 3,500 institutional members including IITs, NITs, and other leading technical institutions across India.</p>
       </div>
+      
       <div id="mission" class="tab-content">
-        <p>…Our mission is to develop top-quality engineers through workshops, seminars, and competitions.</p>
+        <p>Our mission is to assist and contribute to the production and development of top-quality professional engineers and technicians needed by the industries and other organizations.</p>
+        <p>Key objectives:</p>
+        <ul>
+          <li>To provide quality training programs to teachers and administrators of technical institutions</li>
+          <li>To help technical institutions in curriculum development</li>
+          <li>To promote research and development in technical education</li>
+          <li>To organize technical events and competitions for students</li>
+        </ul>
       </div>
+      
+      <div id="vision" class="tab-content">
+        <p>Our vision is to be the leading organization for technical education that fosters innovation, excellence, and leadership in engineering education and research.</p>
+        <p>We envision:</p>
+        <ul>
+          <li>A technical education system that produces globally competent engineers</li>
+          <li>An ecosystem that promotes industry-academia collaboration</li>
+          <li>Technical institutions that are centers of excellence in teaching and research</li>
+          <li>Students who are innovators and problem solvers</li>
+        </ul>
+      </div>
+      
       <div id="history" class="tab-content">
-        <p>…Founded in 1968, ISTE has chapters in 400+ institutions across India.</p>
+        <p>The Indian Society for Technical Education was started in 1941 as the Association of Principals of Technical Institutions (APTI). It was converted into "Indian Society for Technical Education" in 1968 with a view to enlarge its activities to advance the cause of technological education.</p>
+        <p>Major milestones:</p>
+        <ul>
+          <li><strong>1941:</strong> Founded as APTI</li>
+          <li><strong>1968:</strong> Renamed as ISTE</li>
+          <li><strong>1981:</strong> Granted recognition by AICTE</li>
+          <li><strong>2005:</strong> Launched ISTE National Student Chapters</li>
+          <li><strong>2020:</strong> Reached 3,500+ institutional members</li>
+        </ul>
       </div>
     </section>
 
-    <!-- Events Flip Cards -->
+    <!-- Events Section -->
     <section id="events">
-      <div class="section-title"><h2>Our Events</h2></div>
+      <div class="section-title">
+        <h2>Upcoming Events</h2>
+      </div>
+      
+      <div class="section-subtitle">
+        Participate in our exciting events and workshops designed to enhance your technical skills and knowledge.
+      </div>
+      
       <div class="events-grid">
+        <!-- Event 1 -->
         <div class="event-card">
           <div class="event-inner">
             <div class="event-front">
-              <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678" alt="Workshop" />
+              <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1412&q=80" alt="Web Development Workshop" />
               <div class="event-info">
-                <div class="event-date">June 15, 2024</div>
-                <h3>Web Development Workshop</h3>
+                <div class="event-date"><i class="far fa-calendar-alt"></i> June 15, 2024</div>
+                <h3 class="event-title">Web Development Workshop</h3>
+                <p class="event-desc">Learn modern web technologies including HTML5, CSS3, JavaScript and React framework from industry experts.</p>
               </div>
             </div>
             <div class="event-back">
+              <h3>Web Development Workshop</h3>
+              <p>Full-day hands-on workshop covering front-end development fundamentals and advanced concepts.</p>
+              <p><i class="far fa-clock"></i> 9:00 AM - 5:00 PM</p>
+              <p><i class="fas fa-map-marker-alt"></i> CS Department Lab</p>
               <a href="#" class="btn">Register Now</a>
             </div>
           </div>
         </div>
-        <!-- repeat for each event -->
+        
+        <!-- Event 2 -->
+        <div class="event-card">
+          <div class="event-inner">
+            <div class="event-front">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Hackathon" />
+              <div class="event-info">
+                <div class="event-date"><i class="far fa-calendar-alt"></i> July 22-23, 2024</div>
+                <h3 class="event-title">24-Hour Hackathon</h3>
+                <p class="event-desc">Build innovative solutions for real-world problems in this intense coding competition.</p>
+              </div>
+            </div>
+            <div class="event-back">
+              <h3>24-Hour Hackathon</h3>
+              <p>Theme: "Sustainable Technology Solutions". Teams of 2-4 members. Exciting prizes for winners!</p>
+              <p><i class="far fa-clock"></i> 10:00 AM (Day 1) - 10:00 AM (Day 2)</p>
+              <p><i class="fas fa-map-marker-alt"></i> Innovation Center</p>
+              <a href="#" class="btn">Register Team</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Event 3 -->
+        <div class="event-card">
+          <div class="event-inner">
+            <div class="event-front">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Expert Talk" />
+              <div class="event-info">
+                <div class="event-date"><i class="far fa-calendar-alt"></i> August 5, 2024</div>
+                <h3 class="event-title">Industry Expert Talk</h3>
+                <p class="event-desc">Interactive session with tech leaders about current industry trends and career opportunities.</p>
+              </div>
+            </div>
+            <div class="event-back">
+              <h3>Industry Expert Talk</h3>
+              <p>Guest Speaker: Mr. Rajesh Kumar, CTO of TechSolutions Inc. on "Emerging Technologies in 2024".</p>
+              <p><i class="far fa-clock"></i> 2:00 PM - 4:00 PM</p>
+              <p><i class="fas fa-map-marker-alt"></i> Main Auditorium</p>
+              <a href="#" class="btn">Get Pass</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Contact & Newsletter -->
-    <section id="contact">
-      <div class="section-title"><h2>Contact Us</h2></div>
-      <div class="footer-newsletter">
-        <input type="email" placeholder="Your email" required />
-        <button>Subscribe</button>
+    <!-- Team Section -->
+    <section id="team">
+      <div class="section-title">
+        <h2>Our Team</h2>
       </div>
-      <p>ISTE Students' Chapter, Computer Science Dept., Your College, City – 123456</p>
-      <p>Email: iste@yourcollege.edu | Phone: +91 9876543210</p>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2024 ISTE Students' Chapter. All Rights Reserved.</p>
-  </footer>
-
-  <!-- Swiper JS -->
-  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
-  <script>
-    // Swiper init
-    new Swiper('.swiper', {
-      loop: true,
-      autoplay: { delay: 5000 },
-      pagination: { el: '.swiper-pagination' },
-      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
-    });
-
-    // Shrink header on scroll
-    const header = document.querySelector('header');
-    const logo = document.querySelector('.logo-img');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) {
-        header.classList.add('shrink');
-        logo.classList.add('shrink');
-      } else {
-        header.classList.remove('shrink');
-        logo.classList.remove('shrink');
-      }
-    });
-
-    // Tabs
-    document.querySelectorAll('.tabs button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelector('.tabs .active').classList.remove('active');
-        btn.classList.add('active');
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      });
-    });
-  </script>
-</body>
-</html>
+      
+      <div class="section-subtitle">
+        Meet the dedicated team behind ISTE Student Chapter at our college.
+      </div>
+      
+      <div class="team-grid">
+        <!-- Faculty Advisor -->
+        <div class="team-member">
+          <div class="member-img">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Ramesh Kumar" />
+          </div>
+          <h3 class
